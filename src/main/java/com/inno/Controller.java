@@ -1,5 +1,6 @@
 package com.inno;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,9 +15,12 @@ public class Controller {
 	public String generateStringHtmlContent() {
 		System.out.println("Request Received");
 		Map<String, Object> context = new HashMap<>();
-		context.put("memberName", "PagalDost");
-		context.put("membershipName", "Golden Kida");
-		context.put("vmaPlusAdminLink", "https://www.vmapracticeplus.com");
-		return templateService.generateTemplate("invoice_payment_failed", context);
+		context.put("memberName", "Spring Boot");
+		context.put("message", "This is a sample message");
+		context.put("timestamp", new Date());
+		String content =  templateService.generateTemplate("invoice_payment_failed", context);
+		System.out.println(content);
+		return content;
+
 	}
 }
