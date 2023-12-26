@@ -12,13 +12,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
 
 	@Autowired private TemplateService templateService;
+	@Autowired private DocumentGenerator documentGenerator;
 	@GetMapping("string")
 	public String generateStringHtmlContent() {
 		System.out.println("Request Received");
 		Map<String, Object> context = new HashMap<>();
 		context.put("empsList", getDetails());
 		String content =  templateService.generateTemplate("emp", context);
-		System.out.println(content);
+		documentGenerator.htmlStringToPdf(content);
+		//documentGenerator.convertHtmlToPdf(content);
+		//System.out.println(content);
 		return content;
 
 	}
