@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,17 +15,26 @@ public class Controller {
 
 	@Autowired private TemplateService templateService;
 	@Autowired private DocumentGenerator documentGenerator;
+	@Autowired PasswordProtctedPdfService passwordProtctedPdfService;
+	private Logger log = LoggerFactory.getLogger(Controller.class);
+
+	
 	@GetMapping("string")
-	public String generateStringHtmlContent() {
-		System.out.println("Request Received");
+	public String generatePDFFromHtmlContentAndGetBase64EncodedString() {
+		log.info("Request Received generatePDFFromHtmlContentAndGetBase64EncodedString");
 		Map<String, Object> context = new HashMap<>();
 		context.put("empsList", getDetails());
 		String content =  templateService.generateTemplate("emp", context);
-		documentGenerator.htmlStringToPdf(content);
-		//documentGenerator.convertHtmlToPdf(content);
-		//System.out.println(content);
-		return content;
-
+		return documentGenerator.htmlStringToPdf(content);
+	}
+	
+	@GetMapping("password")
+	public String generateHtmlContentAndGetBase64EncodedStringPasswordProtected() {
+		log.info("Request Received generateHtmlContentAndGetBase64EncodedStringPasswordProtected");
+		Map<String, Object> context = new HashMap<>();
+		context.put("empsList", getDetails());
+		String content =  templateService.generateTemplate("emp", context);
+		return passwordProtctedPdfService.htmlStringToPdf(content);
 	}
 	
 	public List<Employee> getDetails(){
