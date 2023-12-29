@@ -1,4 +1,4 @@
-package com.inno;
+package com.inno.dto;
 
 public class Employee {
 	private Integer empno;

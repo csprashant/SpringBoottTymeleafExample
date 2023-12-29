@@ -1,4 +1,4 @@
-package com.inno;
+package com.inno.config;
 
 import java.util.Map;
 

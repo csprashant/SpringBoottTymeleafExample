@@ -1,4 +1,4 @@
-package com.inno;
+package com.inno.service;
 
 
 import java.io.FileOutputStream;
@@ -28,6 +28,7 @@ public class DocumentGenerator {
 			DefaultFontProvider defaultFont = new DefaultFontProvider(false, true, false);
 			ConverterProperties converterProperties = new ConverterProperties();
 			converterProperties.setFontProvider(defaultFont);
+		
 			HtmlConverter.convertToPdf(content, pdfwriter, converterProperties);
 			FileOutputStream fout = new FileOutputStream("C:\\Users\\acer\\Desktop\\employee_HtmlConvertor.pdf");
 			byteArrayOutputStream.writeTo(fout);

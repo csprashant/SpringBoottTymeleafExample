@@ -1,4 +1,4 @@
-package com.inno;
+package com.inno.service;
 import java.io.FileOutputStream;
 import java.io.StringReader;
 import java.util.Base64;
@@ -26,7 +26,7 @@ public class PasswordProtctedPdfService {
 			XMLWorkerHelper.getInstance().parseXHtml(writer, document, new StringReader(content));
 			document.close();
 			//for demo only 
-			FileOutputStream fout = new FileOutputStream("C:\\Users\\acer\\Desktop\\emp_password_protected.pdf");
+			FileOutputStream fout = new FileOutputStream("C:\\Users\\acer\\Desktop\\PasswordProtctedPdfService.pdf");
 			byteArrayOutputStream.writeTo(fout);
 			byteArrayOutputStream.close();
 			byteArrayOutputStream.flush();
